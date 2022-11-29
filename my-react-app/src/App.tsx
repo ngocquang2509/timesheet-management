@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Counter />
-      <Greeting isLoggedIn={false} />
+      <Greeting isLoggedIn={true} />
     </div>
   );
 }
