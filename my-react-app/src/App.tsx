@@ -1,6 +1,7 @@
 import "./App.css";
 import { Greeting } from "./Main Concepts/Conditional Rendering";
 import { Counter } from "./Main Concepts/Counter";
+import { Form } from "./Main Concepts/Forms";
 import { ListNumber } from "./Main Concepts/Keys";
 import { Garage } from "./Main Concepts/Lists";
 
@@ -14,6 +15,7 @@ function App() {
       <Greeting isLoggedIn={true} />
       <Garage cars={cars} />
       <ListNumber value={numbers} />
+      <Form/>
     </div>
   );
 }
