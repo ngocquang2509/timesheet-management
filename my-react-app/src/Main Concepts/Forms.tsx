@@ -1,29 +1,37 @@
-import React from "react";
+import { useState } from "react"
 
-export class Form extends React.Component<{}, {value: string}> {
-  constructor(props: any) {
-    super(props);
-    this.state = { value: "" };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+export const Form = () => {
+    const [inputs, setInputs] = useState<{username: string, age: number}>({username: '', age: 0})
+    const [selected, setSelected] = useState('')
 
-  handleChange(e: any) {
-    this.setState({value: e.target.value})
-  }
+    const handleInputChange = (e: any) => {
+        const name = e.target.name
+        const value = e.target.value
+        setInputs(values => ({...values, [name]: value}))
+    }
 
-  handleSubmit(e: any) {
-    e.preventDefault()
-    console.log(this.state.value);
-  }
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        console.log('messs');
+    }
 
-  render() {
+    const handleSelectChange = (e: any) => {
+        setSelected(e.target.value)
+    }
+
     return (
-        <form onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-            <input type="submit" value='Submit' />
+        <form onSubmit={handleSubmit}>
+            <label>User name</label>
+            <input type="text" name="username" value={inputs.username || ''} onChange={handleInputChange} />
+            <label>Age</label>
+            <input type="text" name="age" value={inputs.age || ''} onChange={handleInputChange}/>
+            <label>Favourite food</label>
+            <select value={selected} onChange={handleSelectChange}>
+                <option value="pizza">Pizza</option>
+                <option value="hanburger">Hamburger</option>
+                <option value="noodle">Noodle</option>
+                <option value="beef">Beef</option>
+            </select>
         </form>
     )
-  }
 }
