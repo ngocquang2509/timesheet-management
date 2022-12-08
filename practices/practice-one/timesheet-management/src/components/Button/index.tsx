@@ -8,14 +8,15 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   textContent,
   bgColor,
-  size,
+  size = 'md',
   onClick,
   ...rest
 }: IButton): React.ReactElement => (
   <button
     className={`${bgColor} text-white text-center px-5 py-2.5 mr-2 mb-2 rounded-lg ${
-      size === 'sm' ? 'text-sm' : size === 'md' ? 'text-md' : 'text-lg'
+      size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : size
     }`}
+
     onClick={onClick}
     {...rest}
   >
