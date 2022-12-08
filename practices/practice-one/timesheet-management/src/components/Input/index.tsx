@@ -1,16 +1,25 @@
 interface IInput extends React.ComponentPropsWithoutRef<'input'> {
-  className: string;
   type: string;
   placeholder?: string;
   value?: string;
+  bgColor?: string;
+  textColor?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ type, className, placeholder, value, onChange, ...rest }: IInput) => {
+const Input = ({
+  type,
+  placeholder,
+  value,
+  bgColor,
+  textColor,
+  onChange,
+  ...rest
+}: IInput): React.ReactElement => {
   return (
     <input
       type={type}
-      className={className}
+      className={`${bgColor} ${textColor} py-2 px-4 rounded`}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
