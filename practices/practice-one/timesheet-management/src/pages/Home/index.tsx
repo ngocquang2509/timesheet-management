@@ -1,7 +1,9 @@
-import { Header } from '../../layouts/Header';
+import Header from 'layouts/Header';
 
-export const Home = () => (
+const Home = (): React.ReactElement => (
   <>
     <Header />
   </>
 );
+
+export default Home;
