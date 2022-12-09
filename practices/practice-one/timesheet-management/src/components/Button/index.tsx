@@ -1,12 +1,6 @@
-export enum ButtonSize {
-  SMALL = 'text-sm',
-  MEDIUM = 'text-md',
-  LARGE = 'text-lg'
-}
-
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   textContent?: string;
-  size?: ButtonSize;
+  size?: string;
   bgColor?: string;
   onClick?: () => void;
 }
@@ -14,15 +8,33 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   textContent,
   bgColor,
-  size = ButtonSize.MEDIUM,
+  size,
   onClick,
   ...rest
-}: IButton): React.ReactElement => (
-  <button
-    className={`${size} ${bgColor?.startsWith("bg-") ? bgColor : ''} text-white text-center px-5 py-2.5 mr-2 mb-2 rounded-lg `}
-    onClick={onClick}
-    {...rest}
-  >
-    {textContent}
-  </button>
-);
+}: IButton): React.ReactElement => {
+  const baseClass = 'text-white text-center px-5 py-2.5 mr-2 mb-2 rounded-lg';
+  const classes = [
+    baseClass,
+    size === 'sm'
+      ? 'text-sm'
+      : '' || size === 'md'
+      ? 'text-md'
+      : '' || size === 'lg'
+      ? 'text-lg'
+      : '',
+
+    bgColor === 'primary'
+      ? 'bg-sky-500 hover:bg-sky-600'
+      : '' || bgColor === 'info'
+      ? 'bg-green-500 hover:bg-green-600'
+      : '' || bgColor === 'danger'
+      ? 'bg-red-500 hover:bg-red-600'
+      : ''
+  ].join(' ');
+
+  return (
+    <button className={`${classes}`} onClick={onClick} {...rest}>
+      {textContent}
+    </button>
+  );
+};
