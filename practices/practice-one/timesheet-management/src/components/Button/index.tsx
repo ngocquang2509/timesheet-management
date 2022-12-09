@@ -5,7 +5,7 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
 }
 
-export const Button = ({
+const Button = ({
   textContent,
   bgColor,
   size,
@@ -31,3 +31,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button
