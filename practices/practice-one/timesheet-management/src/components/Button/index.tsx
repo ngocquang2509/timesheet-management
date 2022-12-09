@@ -19,7 +19,7 @@ export const Button = ({
   ...rest
 }: IButton): React.ReactElement => (
   <button
-    className={`${size} ${bgColor} text-white text-center px-5 py-2.5 mr-2 mb-2 rounded-lg `}
+    className={`${size} ${bgColor?.startsWith("bg-") ? bgColor : ''} text-white text-center px-5 py-2.5 mr-2 mb-2 rounded-lg `}
     onClick={onClick}
     {...rest}
   >
