@@ -25,16 +25,30 @@ const getFormValues = () => {
 const Form = (): React.ReactElement => {
   const [values, setValues] = useState<IForm>(getFormValues);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setValues((preValues) => ({
       ...preValues,
       [e.target.name]: e.target.value
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    localStorage.setItem('time-sheet', JSON.stringify(values));
+    const data = new FormData(e.target);
+
+    const hours = data.get('hours');
+    const comments = data.get('comments');
+    const records = data.get('records');
+
+    const timesheet = {
+      hours,
+      comments,
+      records
+    };
+
+    localStorage.setItem('time-sheet', JSON.stringify(timesheet));
   };
 
   return (
@@ -47,7 +61,7 @@ const Form = (): React.ReactElement => {
 
         <div className="col-start-3 col-span-3 mb-5">
           <label>Records</label>
-          <DropdownMenu options={DROPDOWN_OPTIONS} onChange={handleChange}/>
+          <DropdownMenu name="records" options={DROPDOWN_OPTIONS} onChange={handleChange} />
         </div>
 
         <div className="row-start-2 col-span-4">
@@ -59,7 +73,7 @@ const Form = (): React.ReactElement => {
             onChange={handleChange}
           />
         </div>
-        <div className='row-start-3 col-start-6 mt-4'>
+        <div className="row-start-3 col-start-6 mt-4">
           <Button size="md" bgColor="primary" textContent="Submit" />
         </div>
       </form>
