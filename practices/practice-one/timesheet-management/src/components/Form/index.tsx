@@ -6,6 +6,7 @@ import Input from 'components/Input';
 import { StorageHelper } from 'src/helpers/localStore';
 
 const Form = (): React.ReactElement => {
+  // Hanlde Submit form
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -20,7 +21,7 @@ const Form = (): React.ReactElement => {
       records
     };
 
-    StorageHelper.set('time-sheet', timesheet)
+    StorageHelper.set('time-sheet', timesheet);
   };
 
   return (
@@ -44,7 +45,7 @@ const Form = (): React.ReactElement => {
           />
         </div>
         <div className="row-start-3 col-start-6 mt-4">
-          <Button type='submit' size="md" bgColor="primary" textContent="Submit" />
+          <Button type="submit" size="md" bgColor="primary" textContent="Submit" />
         </div>
       </form>
     </>
