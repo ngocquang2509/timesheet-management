@@ -1,4 +1,4 @@
-export const StorageService = {
+export const StorageHelper = {
   get: (key: string) => {
     try {
       let data = JSON.parse(localStorage.getItem(key) || '');

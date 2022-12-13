@@ -3,7 +3,7 @@ import { DROPDOWN_OPTIONS } from 'src/constants/dropdownOption';
 import Button from 'components/Button';
 import DropdownMenu from 'components/DropdownMenu';
 import Input from 'components/Input';
-import { StorageService } from 'src/helpers/localStore';
+import { StorageHelper } from 'src/helpers/localStore';
 
 const Form = (): React.ReactElement => {
   const handleSubmit = (e: any) => {
@@ -20,7 +20,7 @@ const Form = (): React.ReactElement => {
       records
     };
 
-    StorageService.set('time-sheet', timesheet)
+    StorageHelper.set('time-sheet', timesheet)
   };
 
   return (
