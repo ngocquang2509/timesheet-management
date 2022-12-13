@@ -5,7 +5,7 @@ import DropdownMenu from 'components/DropdownMenu';
 import Input from 'components/Input';
 import { StorageHelper } from 'src/helpers/localStore';
 
-const Form = (): React.ReactElement => {
+const Form = ({closeModal}: any): React.ReactElement => {
   // Hanlde Submit form
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -22,11 +22,12 @@ const Form = (): React.ReactElement => {
     };
 
     StorageHelper.set('time-sheet', timesheet);
+    closeModal(false)
   };
 
   return (
     <>
-      <form className="grid grid-cols-6 pb-8" onSubmit={handleSubmit}>
+      <form className="grid grid-cols-6 pb-3" onSubmit={handleSubmit}>
         <div className="col-span-2 row-start-2">
           <label>Hours</label>
           <Input name="hours" type="text" size="md" />
@@ -45,7 +46,7 @@ const Form = (): React.ReactElement => {
           />
         </div>
         <div className="row-start-3 col-start-6 mt-4">
-          <Button type="submit" size="md" bgColor="primary" textContent="Submit" />
+          <Button type="submit" size="sm" bgColor="primary" textContent="Submit"/>
         </div>
       </form>
     </>
