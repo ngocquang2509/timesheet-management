@@ -44,7 +44,7 @@ const Form = (): React.ReactElement => {
           />
         </div>
         <div className="row-start-3 col-start-6 mt-4">
-          <Button size="md" bgColor="primary" textContent="Submit" />
+          <Button type='submit' size="md" bgColor="primary" textContent="Submit" />
         </div>
       </form>
     </>
