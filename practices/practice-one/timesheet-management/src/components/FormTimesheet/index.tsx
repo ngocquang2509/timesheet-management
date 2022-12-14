@@ -3,31 +3,35 @@ import { DROPDOWN_OPTIONS } from 'src/constants/dropdownOption';
 import Button from 'components/Button';
 import DropdownMenu from 'components/DropdownMenu';
 import Input from 'components/Input';
-import { StorageHelper } from 'src/helpers/localStore';
+import { ITimesheet } from 'src/interfaces/timesheet';
 
-const Form = ({closeModal}: any): React.ReactElement => {
-  // Hanlde Submit form
-  const handleSubmit = (e: any) => {
+const FormTimesheet = ({
+  handleFormSubmit
+}: {
+  handleFormSubmit: (timesheet: ITimesheet) => void;
+}): React.ReactElement => {
+  const getData = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.target);
 
-    const hours = data.get('hours');
-    const comments = data.get('comments');
-    const records = data.get('records');
+    const hours: string = data.get('hours')?.toString() || '';
+    const comments: string = data.get('comments')?.toString() || '';
+    const records: string = data.get('records')?.toString() || '';
 
-    const timesheet = {
+    const timesheet: ITimesheet = {
+      id: new Date().getTime().toString(),
       hours,
       comments,
-      records
+      records,
+      createdAt: new Date().toISOString()
     };
 
-    StorageHelper.set('time-sheet', timesheet);
-    closeModal(false)
+    handleFormSubmit(timesheet);
   };
 
   return (
     <>
-      <form className="grid grid-cols-6 pb-3" onSubmit={handleSubmit}>
+      <form className="grid grid-cols-6" onSubmit={getData}>
         <div className="col-span-2 row-start-2">
           <label>Hours</label>
           <Input name="hours" type="text" size="md" />
@@ -46,11 +50,11 @@ const Form = ({closeModal}: any): React.ReactElement => {
           />
         </div>
         <div className="row-start-3 col-start-6 mt-4">
-          <Button type="submit" size="sm" bgColor="primary" textContent="Submit"/>
+          <Button type="submit" size="sm" bgColor="primary" textContent="Submit" />
         </div>
       </form>
     </>
   );
 };
 
-export default Form;
+export default FormTimesheet;
