@@ -2,13 +2,26 @@ import { ITimesheet } from 'src/interfaces/timesheet';
 import Button from '../Button';
 import Input from '../Input';
 
-const TimesheetItem = ({ hours, comments, records }: ITimesheet): React.ReactElement => {
+interface ITimesheetItem extends ITimesheet {
+  onOpenConfirmModal: (id: string) => void
+}
+const TimesheetItem = ({
+  id,
+  hours,
+  comments,
+  records,
+  onOpenConfirmModal
+}: ITimesheetItem): React.ReactElement => {
   return (
     <li className="px-5 py-3 m-auto mb-3 w-2/3 border-2 border-solid rounded">
       <div className="text-right mb-2">
-        <Button size="sm" bgColor="danger" textContent="Delete"/>
+        <Button
+          size="sm"
+          bgColor="danger"
+          textContent="Delete"
+          onClick={() => onOpenConfirmModal(id)}
+        />
       </div>
-
       <div className="grid grid-cols-6 ">
         <div className="col-span-2 row-start-2">
           <label>Hours</label>
