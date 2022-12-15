@@ -6,12 +6,25 @@ import { storageHelper } from 'src/helpers/localStore';
 import { ITimesheet } from 'src/interfaces/timesheet';
 import TimesheetItem from 'src/components/TimesheetItem';
 import ConfirmDeleteModal from 'src/components/ConfirmDeleteModal';
+import { sortedTimesheetlist } from 'src/helpers/sortTimesheet';
 
 const Home = (): React.ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
   const [listTimesheet, setListTimesheet] = useState(storageHelper.get('time-sheet'));
+  const [sortOption, setSortOption] = useState({ hours: false, createAt: true })
+
+  const listTimesheetSorted = sortedTimesheetlist(listTimesheet, sortOption);
+
+  const onSortTimesheet = () => {
+    setSortOption(prev=> {
+      return{
+        hours: !prev.hours,
+        createAt : !prev.createAt
+      }
+    })
+  };
 
   const toggleModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -23,8 +36,8 @@ const Home = (): React.ReactElement => {
 
   const handleFormSubmit = (timesheet: ITimesheet) => {
     listTimesheet.push(timesheet);
-    setListTimesheet(listTimesheet);
     storageHelper.set('time-sheet', listTimesheet);
+    setListTimesheet(listTimesheet);
     setIsOpenModal(false);
   };
 
@@ -45,12 +58,13 @@ const Home = (): React.ReactElement => {
       <Header />
       <div className="flex justify-evenly my-3">
         <Button size="lg" bgColor="primary" textContent="Create" onClick={toggleModal} />
+        <Button size="lg" bgColor="primary" textContent="Sort" onClick={onSortTimesheet} />
       </div>
       {isOpenModal && (
         <ModalFormTimesheet onCloseModal={toggleModal} handleFormSubmit={handleFormSubmit} />
       )}
       <ul>
-        {listTimesheet.map((item: ITimesheet) => (
+        {listTimesheetSorted.map((item: ITimesheet) => (
           <TimesheetItem
             key={item.id}
             id={item.id}
