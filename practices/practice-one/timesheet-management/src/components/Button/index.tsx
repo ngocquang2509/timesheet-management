@@ -14,9 +14,10 @@ const Button = ({
   const classes = [
     baseClass,
 
-    size === 'sm' ? 'text-sm' : '',
-    size === 'md' ? 'text-md' : '',
-    size === 'lg' ? 'text-lg' : '',
+    size === 'sm' ? 'text-sm w-20' : '',
+    size === 'md' ? 'text-md w-36' : '',
+    size === 'lg' ? 'text-lg w-48' : '',
+
 
     bgColor === 'primary' ? 'bg-sky-500 hover:bg-sky-600' : '',
     bgColor === 'info' ? 'bg-green-500 hover:bg-green-600' : '',
