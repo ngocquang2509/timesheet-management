@@ -58,7 +58,7 @@ const Home = (): React.ReactElement => {
       <Header />
       <div className="flex justify-evenly my-3">
         <Button size="lg" bgColor="primary" textContent="Create" onClick={toggleModal} />
-        <Button size="lg" bgColor="primary" textContent="Sort" onClick={onSortTimesheet} />
+        <Button size="lg" bgColor="primary" textContent={sortOption.hours ? 'Sort by CreateAt' : 'Sort by Hours'}  onClick={onSortTimesheet} />
       </div>
       {isOpenModal && (
         <ModalFormTimesheet onCloseModal={toggleModal} handleFormSubmit={handleFormSubmit} />

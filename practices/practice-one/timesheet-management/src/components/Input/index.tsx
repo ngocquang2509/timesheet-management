@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React  from 'react';
 
-interface IInput extends React.ComponentPropsWithoutRef<'input'> {
+interface IInput extends Omit<React.ComponentPropsWithoutRef<'input'>, "size"> {
   type: string;
   name: string;
   value?: string;
