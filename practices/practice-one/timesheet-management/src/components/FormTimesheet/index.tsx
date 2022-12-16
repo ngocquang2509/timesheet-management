@@ -63,7 +63,7 @@ const FormTimesheet = ({
           />
           <p className="text-red-400">{errorMsgs.comment}</p>
         </div>
-        <div className="row-start-3 col-start-6 mt-4">
+        <div className="row-start-3 col-start-6 mt-4 w-full text-right">
           <Button type="submit" size="sm" bgColor="primary" textContent="Submit" />
         </div>
       </form>
