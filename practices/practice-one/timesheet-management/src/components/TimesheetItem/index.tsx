@@ -13,7 +13,7 @@ const TimesheetItem = ({
   onOpenConfirmModal
 }: ITimesheetItem): React.ReactElement => {
   return (
-    <li className="px-5 py-3 m-auto mb-3 w-2/3 border-2 border-solid rounded">
+    <li className="px-5 py-3 m-auto mb-3 w-full border-2 border-solid rounded">
       <div className="text-right mb-2">
         <Button
           size="sm"
