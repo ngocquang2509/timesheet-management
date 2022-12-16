@@ -54,7 +54,7 @@ const Home = (): React.ReactElement => {
   };
 
   return (
-    <div className="m-auto w-1/2">
+    <div className="m-auto w-[1000px]">
       <Header />
       <div className="flex justify-between my-3">
         <Button size="lg" bgColor="primary" textContent="Create" onClick={toggleModal} />
