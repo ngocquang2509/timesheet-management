@@ -13,17 +13,17 @@ const Home = (): React.ReactElement => {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
   const [listTimesheet, setListTimesheet] = useState(storageHelper.get('time-sheet'));
-  const [sortOption, setSortOption] = useState({ hours: false, createAt: true })
+  const [sortOption, setSortOption] = useState({ hour: false, createAt: true });
 
   const listTimesheetSorted = sortedTimesheetlist(listTimesheet, sortOption);
 
   const onSortTimesheet = () => {
-    setSortOption(prev=> {
-      return{
-        hours: !prev.hours,
-        createAt : !prev.createAt
-      }
-    })
+    setSortOption((prev) => {
+      return {
+        hour: !prev.hour,
+        createAt: !prev.createAt
+      };
+    });
   };
 
   const toggleModal = () => {
@@ -58,7 +58,12 @@ const Home = (): React.ReactElement => {
       <Header />
       <div className="flex justify-evenly my-3">
         <Button size="lg" bgColor="primary" textContent="Create" onClick={toggleModal} />
-        <Button size="lg" bgColor="primary" textContent={sortOption.hours ? 'Sort by CreateAt' : 'Sort by Hours'}  onClick={onSortTimesheet} />
+        <Button
+          size="lg"
+          bgColor="primary"
+          textContent={sortOption.hour ? 'Sort by CreateAt' : 'Sort by Hours'}
+          onClick={onSortTimesheet}
+        />
       </div>
       {isOpenModal && (
         <ModalFormTimesheet onCloseModal={toggleModal} handleFormSubmit={handleFormSubmit} />
@@ -68,9 +73,9 @@ const Home = (): React.ReactElement => {
           <TimesheetItem
             key={item.id}
             id={item.id}
-            hours={item.hours}
-            comments={item.comments}
-            records={item.records}
+            hour={item.hour}
+            comment={item.comment}
+            record={item.record}
             createdAt={item.createdAt}
             onOpenConfirmModal={onOpenConfirmModal}
           />

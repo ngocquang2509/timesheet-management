@@ -1,7 +1,7 @@
 export interface ITimesheet {
   readonly id: string;
-  hours: string;
-  comments: string;
-  records: string;
+  hour: number;
+  comment: string;
+  record: string;
   readonly createdAt: string;
 }

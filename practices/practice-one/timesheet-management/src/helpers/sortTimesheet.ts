@@ -1,22 +1,24 @@
 import { ITimesheet } from 'src/interfaces/timesheet';
 
-
 interface SortOption {
-  hours: boolean;
+  hour: boolean;
   createAt: boolean;
 }
 
 /**
  * Sort list time sheet by create at
  * @param {ITimesheet[]} listTimesheet: list timesheet that have not been sorted
- * @param {SortOption} { hours, createAt }:  sort option 
+ * @param {SortOption} { hours, createAt }:  sort option
  * @returns {ITimesheet[]} list timesheet that have been sorted
  */
-export const sortedTimesheetlist = (listTimesheet: ITimesheet[], { hours, createAt }: SortOption) => {
-  if (hours) {
+export const sortedTimesheetlist = (
+  listTimesheet: ITimesheet[],
+  { hour, createAt }: SortOption
+) => {
+  if (hour) {
     listTimesheet.sort(
       (preTimesheet: ITimesheet, nextTimesheet: ITimesheet) =>
-        +preTimesheet.hours - +nextTimesheet.hours
+        +preTimesheet.hour - +nextTimesheet.hour
     );
   }
   if (createAt) {
