@@ -12,9 +12,6 @@ function App() {
       <Greeting isLoggedIn={true} />
       <HoverImage1 />
       <HoverImage2 />
-      <Profiler id="NewForm" onRender={profilerCallback}>
-        <NewForm />
-      </Profiler>
     </div>
   );
 }
